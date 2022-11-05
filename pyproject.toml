@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "jenkins_docker"
+version = "0.1.0"
+description = ""
+authors = ["Krushna Panchvishe <krushna.4997@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "3.9.4"
+streamlit = "^1.14.0"
+pandas = "^1.5.1"
+numpy = "^1.23.4"
+importlib-resources = "^5.10.0"
+"backports.zoneinfo" = "^0.2.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
