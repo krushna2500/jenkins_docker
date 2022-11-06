@@ -1,34 +1,39 @@
-// pipeline {
-//     agent any
+pipeline{
 
-//     stages {
-//         stage('Build') {
-//             steps {
-//                 echo 'Building..'
-//             }
-//         }
-//         stage('Test') {
-//             steps {
-//                 echo 'Testing..'
-//             }
-//         }
-//         stage('Deploy') {
-//             steps {
-//                 echo 'Deploying....'
-//             }
-//         }
-//     }
-// }
+	agent any
 
+	environment {
+		DOCKERHUB_CREDENTIALS=credentials('My_Dockerhub')
+	}
 
-pipeline {
-    agent { dockerfile true }
-    stages {
-        stage('Build') {
-            steps {
-                sh 'docker images'
-                sh 'docker ps'
-            }
-        }
-    }
+	stages {
+
+		stage('Build') {
+
+			steps {
+				sh 'docker build -t krushna2500/jenkins_docker:latest .'
+			}
+		}
+
+		stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
+		stage('Push') {
+
+			steps {
+				sh 'docker push krushna2500/jenkins_docker:latest'
+			}
+		}
+	}
+
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
+
 }
