@@ -1,10 +1,10 @@
 #!groovy
 pipeline {
-	agent none
+	agent any
   stages {
   	stage('Poetry Install') {
     	agent {
-      	docker {
+      	any {
         	image 'jenkins_docker'
         }
       }
