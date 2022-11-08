@@ -9,7 +9,7 @@ pipeline {
         }
       }
       steps {
-      	sh 'Docker clean install'
+      	sh 'docker images'
       }
     }
   }
