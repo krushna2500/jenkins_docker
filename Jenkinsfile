@@ -9,7 +9,7 @@ pipeline {
         }
       }
       steps {
-      	sh 'Poetry clean install'
+      	sh 'Docker clean install'
       }
     }
   }
