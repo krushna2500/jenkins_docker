@@ -1,11 +1,11 @@
 #!groovy
 
 pipeline {
-	agent none
+	agent any
   stages {
   	stage('Install') {
     	agent {
-      	docker {
+      	any {
         	image 'custom_docker'
         }
       }
