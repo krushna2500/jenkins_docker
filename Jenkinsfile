@@ -19,6 +19,12 @@ pipeline {
       	sh 'docker build -t krushna2500/jenkins_docker:v2 .'
       }
     }
+    stage('Test') {
+    	agent any
+      steps {
+      	echo 'Empty'
+      }
+    }
     stage('Docker Push') {
     	agent any
       steps {
@@ -26,7 +32,7 @@ pipeline {
         	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           sh 'docker push krushna2500/jenkins_docker:v2'
         }
-      }
+      }	
     }
   }
 }
