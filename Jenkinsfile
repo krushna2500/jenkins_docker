@@ -5,7 +5,7 @@ pipeline {
   stages {
   	stage('Install') {
     	agent {
-      	docker {
+      	any {
         	image 'custom_docker'
         }
       }
@@ -14,9 +14,9 @@ pipeline {
       }
     }
     stage('Docker Build') {
-    	agent docker
+    	agent any
       steps {
-      	sh 'docker build -t krushna2500/jenkins_docker:v1 .'
+      	sh 'docker build -t krushna2500/jenkins_docker:v2 .'
       }
     }
   }
