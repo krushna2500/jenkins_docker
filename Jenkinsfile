@@ -29,7 +29,7 @@ pipeline {
     	agent any
       steps {
       	withCredentials([usernamePassword(credentialsId: 'Nexus', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+        	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword} 192.168.181.139:8085"
           sh 'docker push 192.168.181.139:8085/jenkins_testing:v1'
         }
       }	
