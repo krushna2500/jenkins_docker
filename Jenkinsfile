@@ -6,7 +6,7 @@ pipeline {
   	stage('Install') {
     	agent {
       	any {
-        	image 'custom_docker'
+        	image 'jenkins_testing'
         }
       }
       steps {
@@ -16,7 +16,7 @@ pipeline {
     stage('Docker Build') {
     	agent any
       steps {
-      	sh 'docker build -t krushna2500/jenkins_docker:v2 .'
+      	sh 'docker build -t 192.168.181.139:8085/jenkins_testing:v1 .'
       }
     }
     stage('Test') {
@@ -28,9 +28,9 @@ pipeline {
     stage('Docker Push') {
     	agent any
       steps {
-      	withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+      	withCredentials([usernamePassword(credentialsId: 'admin', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push krushna2500/jenkins_docker:v2'
+          sh 'docker push 192.168.181.139:8085/jenkins_testing:v1'
         }
       }	
     }
