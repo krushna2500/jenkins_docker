@@ -28,7 +28,7 @@ pipeline {
     stage('Docker Push') {
     	agent any
       steps {
-      	withCredentials([usernamePassword(credentialsId: 'admin', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+      	withCredentials([usernamePassword(credentialsId: 'Nexus', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         	sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
           sh 'docker push 192.168.181.139:8085/jenkins_testing:v1'
         }
