@@ -43,11 +43,11 @@ repos:
     -   id: dead
         discription: Dead code detection
 
--   repo: local
-    hooks:
-    -   id: pylint
-        name: pylint
-        entry: poetry run pylint src/propn_identification.py
-        language: system
-        always_run: true
-        pass_filenames: false
+#-   repo: local
+#    hooks:
+#    -   id: pylint
+#        name: pylint
+#        entry: poetry run pylint src/propn_identification.py
+#        language: system
+#        always_run: true
+#        pass_filenames: false
